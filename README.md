@@ -6,6 +6,8 @@ All 29 mock providers are supported.
 
 The access_token for the provider selected is only saved in the current browser session. 
 
+[The app is also deployed on Streamlit.](https://finch-api-demo.streamlit.app/)
+
 The following endpoints are used:
 - sandbox/create
 - employer/company
