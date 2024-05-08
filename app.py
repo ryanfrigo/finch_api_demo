@@ -41,7 +41,7 @@ endpoint_dict = {
 }
 
 def create_provider(provider_id, employee_size=10):
-    url = 'https://sandbox.tryfinch.com/api/sandbox/create'
+    url = f'{base_url}/sandbox/create'
     headers = {
         'Content-Type': 'application/json'
     }
@@ -90,7 +90,11 @@ def main():
             st.json(provider_json, expanded=False)
 
     if st.session_state['access_token']:
-        # Only fetch the directory if access token is available
+        company_info = get_request(st.session_state['access_token'], 'employer/company')
+        if company_info:
+            st.markdown('## employer/company')
+            st.json(company_info, expanded=False)
+
         employee_directory = get_request(st.session_state['access_token'], 'employer/directory')
         if employee_directory:
             st.markdown('## employer/directory')
