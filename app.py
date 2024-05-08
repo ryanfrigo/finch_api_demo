@@ -60,6 +60,9 @@ def get_request(access_token, endpoint):
         'Content-Type': 'application/json'
     }
     response = requests.get(url, headers=headers)
+    if response.status_code == 501:
+        st.error("Finch does not support this specific endpoint for this specific provider.")
+        return None
     return response.json()
 
 def individual_data(access_token, individual_ids, endpoint):
@@ -73,6 +76,9 @@ def individual_data(access_token, individual_ids, endpoint):
     }
     
     response = requests.post(url, headers=headers, json=data)
+    if response.status_code == 501:
+        st.error("Finch does not support this specific endpoint for this specific provider.")
+        return None
     return response.json()
 
 def main():
